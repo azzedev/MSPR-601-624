@@ -1,0 +1,16 @@
+.buttonListComponent {
+    background-color: #3b82f6 !important;
+    color: white !important;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+:where(.buttonListComponent):hover {
+    background-color: #1045b6 !important;
+}
+.buttonListComponentActive {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+:where(.buttonListComponentActive):hover {
+    background-color: #45a049 !important;
+}

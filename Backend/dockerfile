@@ -1,0 +1,39 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Dépendances système nécessaires pour TensorFlow et data science
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    git \
+    vim \
+    # Dépendances pour TensorFlow
+    libhdf5-dev \
+    pkg-config \
+    # Nettoyage
+    && rm -rf /var/lib/apt/lists/*
+
+# Copier les requirements en premier pour profiter du cache Docker
+COPY requirements.txt .
+
+# Installer les dépendances Python
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Créer les dossiers nécessaires
+RUN mkdir -p /app/models /app/data /app/logs
+
+# Variables d'environnement
+ENV PYTHONUNBUFFERED=1
+ENV FLASK_APP=api.py
+ENV FLASK_ENV=development
+
+# Exposer le port de l'API
+EXPOSE 5000
+
+# Copier le reste du code
+COPY . .
+
+# Commande par défaut pour le développement
+CMD ["tail", "-f", "/dev/null"]

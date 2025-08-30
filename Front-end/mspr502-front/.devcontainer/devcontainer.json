@@ -1,0 +1,119 @@
+{
+    "name": "Epidemic Frontend - React Vite",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "frontend",
+    "workspaceFolder": "/app",
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // TypeScript/JavaScript essentiels
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "ms-vscode.vscode-typescript-tslint-plugin",
+                
+                // React spécifique
+                "dsznajder.es7-react-js-snippets",
+                "burkeholland.simple-react-snippets",
+                
+                // Tailwind CSS (vu dans votre index.css)
+                "bradlc.vscode-tailwindcss",
+                
+                // Outils de développement
+                "christian-kohler.npm-intellisense",
+                "christian-kohler.path-intellisense",
+                "formulahendry.auto-rename-tag",
+                "formulahendry.auto-close-tag",
+                
+                // Git
+                "eamodio.gitlens",
+                
+                // Tests API
+                "humao.rest-client",
+                
+                // Icônes et thèmes
+                "PKief.material-icon-theme",
+                
+                // Docker
+                "ms-azuretools.vscode-docker",
+                
+                // JSON (pour disease.json)
+                "zainchen.json",
+                
+                // CSS
+                "ecmel.vscode-html-css"
+            ],
+            
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "editor.codeActionsOnSave": {
+                    "source.fixAll.eslint": true
+                },
+                "[typescript]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[typescriptreact]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[javascript]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[css]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "eslint.validate": [
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact"
+                ],
+                "typescript.tsdk": "node_modules/typescript/lib",
+                "tailwindCSS.includeLanguages": {
+                    "typescript": "javascript",
+                    "typescriptreact": "javascript"
+                },
+                "files.exclude": {
+                    "**/node_modules": true,
+                    "**/.git": true,
+                    "**/dist": true
+                },
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    },
+    
+    // Installer les dépendances au démarrage
+    "postCreateCommand": "npm install",
+    
+    // Instructions de démarrage
+    "postStartCommand": "echo Le conteneur est pret Pour démarrer le serveur de développement: npm run dev'",
+    
+    // Ports à forwarder
+    "forwardPorts": [3000, 5173, 5000],
+    
+    // Labels pour les ports
+    "portsAttributes": {
+        "3000": {
+            "label": "Vite Dev Server",
+            "onAutoForward": "notify"
+        },
+        "5173": {
+            "label": "Vite HMR",
+            "onAutoForward": "silent"
+        },
+        "5000": {
+            "label": "Backend API",
+            "onAutoForward": "silent"
+        }
+    },
+    
+    // Utilisateur dans le container
+    "remoteUser": "root",
+    
+    // Variables d'environnement
+    "containerEnv": {
+        "NODE_ENV": "development",
+        "VITE_API_URL": "http://localhost:5000"
+    }
+}

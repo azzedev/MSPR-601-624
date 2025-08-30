@@ -1,0 +1,44 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Installer les outils de développement utiles
+RUN apk add --no-cache \
+    git \
+    curl \
+    vim \
+    # Pour les dépendances natives de certains packages npm
+    python3 \
+    make \
+    g++
+
+# Créer les dossiers nécessaires pour votre structure
+RUN mkdir -p /app/src/components /app/src/services /app/src/assets /app/public /app/dist
+
+# Variables d'environnement pour le développement avec Vite
+ENV NODE_ENV=development
+ENV CHOKIDAR_USEPOLLING=true
+# Pour Vite
+ENV VITE_HOST=0.0.0.0
+ENV VITE_PORT=3000
+
+# Exposer le port du serveur de développement Vite
+EXPOSE 3000
+# Port pour le HMR (Hot Module Replacement) de Vite
+EXPOSE 5173
+
+# Copier package.json et package-lock.json si présent
+COPY package*.json ./
+
+# Installer les dépendances
+RUN npm install
+
+# Copier tsconfig et vite config
+COPY tsconfig*.json ./
+COPY vite.config.* ./
+
+# Copier le reste du code
+COPY . .
+
+# Commande par défaut pour garder le container actif
+CMD ["tail", "-f", "/dev/null"]

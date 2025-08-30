@@ -1,0 +1,4 @@
+MAE Test: 0.0030
+Mortality Rate MAE: 0.0085
+Transmission Rate MAE: 0.0004
+Spatial Spread MAE: 0.0000

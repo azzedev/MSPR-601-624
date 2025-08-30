@@ -1,0 +1,95 @@
+{
+    "name": "Epidemic Prediction API",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "epidemic-api",
+    "workspaceFolder": "/app",
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Python
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.debugpy",
+                
+                // Jupyter (pour notebooks)
+                "ms-toolsai.jupyter",
+                "ms-toolsai.jupyter-keymap",
+                "ms-toolsai.jupyter-renderers",
+                
+                // Git
+                "eamodio.gitlens",
+                
+                // Docker
+                "ms-azuretools.vscode-docker",
+                
+                // Formatage et linting
+                "ms-python.black-formatter",
+                "ms-python.flake8",
+                
+                // REST Client pour tester l'API
+                "humao.rest-client",
+                
+                // YAML/JSON
+                "redhat.vscode-yaml",
+                
+                // Markdown
+                "yzhang.markdown-all-in-one",
+                
+                // Icônes
+                "PKief.material-icon-theme"
+            ],
+            
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.linting.enabled": true,
+                "python.linting.pylintEnabled": false,
+                "python.linting.flake8Enabled": true,
+                "python.formatting.provider": "black",
+                "python.formatting.blackPath": "/usr/local/bin/black",
+                "editor.formatOnSave": true,
+                "python.terminal.activateEnvironment": false,
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "files.exclude": {
+                    "**/__pycache__": true,
+                    "**/*.pyc": true
+                }
+            }
+        }
+    },
+    
+    // Commandes à exécuter après la création du container
+    "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt",
+    
+    // Commande pour démarrer l'API automatiquement
+    "postStartCommand": "echo ' Le conteneur est pret Run: python api.py'",
+    
+    // Ports à forwarder automatiquement
+    "forwardPorts": [5000, 6379],
+    
+    // Labels pour les ports
+    "portsAttributes": {
+        "5000": {
+            "label": "API Flask",
+            "onAutoForward": "notify"
+        },
+        "6379": {
+            "label": "Redis",
+            "onAutoForward": "silent"
+        }
+    },
+    
+    // Utilisateur dans le container
+    "remoteUser": "root",
+    
+    // Variables d'environnement supplémentaires
+    "containerEnv": {
+        "FLASK_APP": "api.py",
+        "FLASK_ENV": "development"
+    },
+    
+    // Monter le socket Docker
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+}
