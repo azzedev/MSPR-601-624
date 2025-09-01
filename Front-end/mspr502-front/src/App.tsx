@@ -6,6 +6,7 @@ import GeoPropagationBar from "./components/GeoPropagationBar";
 import LineChartNumberOfDeathAndHealByDay from "./components/LineChartNumberOfDeathByDay";
 import { Chart, Filler } from "chart.js";
 import { apiService, type PredictionResponse } from "./services/apiService";
+import TranslateTest from "./components/langageButton";
 
 Chart.register(Filler);
 
@@ -100,6 +101,8 @@ function App() {
             </div>
           </div>
         )}
+
+        <TranslateTest />
 
         <ButtonList onPredictionReceived={handlePredictionReceived} />
 
