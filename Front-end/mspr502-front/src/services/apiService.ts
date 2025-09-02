@@ -30,7 +30,6 @@ export interface PredictionResponse {
     };
   };
   metadata: {
-    warning: ReactNode;
     warning: any;
     model_version: string;
     prediction_horizon: string;
