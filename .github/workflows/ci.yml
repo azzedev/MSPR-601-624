@@ -1,0 +1,47 @@
+name: CI Frontend mspr601
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - Translation
+  pull_request:
+    branches:
+      - master
+      - develop
+      - Translation
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Front-end/mspr502-front
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v3
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Cache npm
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('Front-end/mspr502-front/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Build du projet
+        run: npm run build
+
+      - name: Lancer les tests
+        run: npm test
