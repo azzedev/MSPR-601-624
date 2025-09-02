@@ -15,5 +15,14 @@
   "projection_of_deaths": "Proiezione dei decessi",
   "number_of_deaths_per_day": "Decessi per giorno",
   "estimated_deaths_per_100k": "Decessi stimati (per 100k casi)",
-  "predicted_mortality_rate": "Tasso di mortalità previsto"
+  "predicted_mortality_rate": "Tasso di mortalità previsto",
+  "transmission_rate": "Tasso di trasmissione",
+  "predicted_transmission_rate": "Tasso di trasmissione previsto",
+  "transmission_rate_by_country": "Tasso di trasmissione per paese",
+  "world_average": "Media mondiale",
+  "epidemic_threshold": "Soglia epidemica",
+  "R0": "R0",
+  "R0_description": "R0 (Tasso di riproduzione di base)",
+  "high_transmission_risk": "Alto rischio di diffusione (R0 > 1)",
+  "controlled_transmission": "Diffusione sotto controllo (R0 ≤ 1)"
 }

@@ -15,5 +15,14 @@
   "projection_of_deaths": "Prognose der Todesfälle",
   "number_of_deaths_per_day": "Todesfälle pro Tag",
   "estimated_deaths_per_100k": "Geschätzte Todesfälle (pro 100k Fälle)",
-  "predicted_mortality_rate": "Vorhergesagte Sterblichkeitsrate"
+  "predicted_mortality_rate": "Vorhergesagte Sterblichkeitsrate",
+  "transmission_rate": "Übertragungsrate",
+  "predicted_transmission_rate": "Vorhergesagte Übertragungsrate",
+  "transmission_rate_by_country": "Übertragungsrate pro Land",
+  "world_average": "Weltmittelwert",
+  "epidemic_threshold": "Epidemie-Schwelle",
+  "R0": "R0",
+  "R0_description": "R0 (Basisreproduktionsrate)",
+  "high_transmission_risk": "Hohes Ausbreitungsrisiko (R0 > 1)",
+  "controlled_transmission": "Kontrollierte Ausbreitung (R0 ≤ 1)"
 }
