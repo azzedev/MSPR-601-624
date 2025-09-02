@@ -6,10 +6,12 @@ const translateTest: React.FC = () => {
 
   return (
     <div>
-      <button onClick={() => i18n.changeLanguage("fr")}>🇫🇷 Français</button>
-      <button onClick={() => i18n.changeLanguage("de")}>🇩🇪 Deutsch</button>
-      <button onClick={() => i18n.changeLanguage("it")}>🇮🇹 Italiano</button>
       <h1>{t("welcome")}</h1>
+      <div className="flex flex-wrap gap-2 mb-4 max-w-full justify-center">
+        <button onClick={() => i18n.changeLanguage("fr")}>🇫🇷 Français</ button>
+        <button onClick={() => i18n.changeLanguage("de")}>🇩🇪 Deutsch</button>
+        <button onClick={() => i18n.changeLanguage("it")}>🇮🇹 Italiano</ button>
+      </div>
     </div>
   );
 }

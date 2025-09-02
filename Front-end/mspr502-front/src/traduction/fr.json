@@ -24,5 +24,17 @@
   "R0": "R0",
   "R0_description": "R0 (Taux de reproduction de base)",
   "high_transmission_risk": "Risque de propagation élevé (R0 > 1)",
-  "controlled_transmission": "Propagation sous contrôle (R0 ≤ 1)"
+  "controlled_transmission": "Propagation sous contrôle (R0 ≤ 1)",
+  "confirmed_cases": "Nombre de cas confirmés",
+  "geographic_propagation_by_country": "Propagation géographique par pays",
+  "number_of_cases": "Nombre de cas",
+   "api_status": "Statut de l'API",
+  "checking": "Vérification...",
+  "predictions_for": "Prédictions pour",
+  "model_limitation": "Limitation du modèle",
+  "mortality_rate": "Taux de mortalité",
+  "spatial_spread": "Propagation spatiale",
+  "unreliable": "peu fiable",
+  "confidence": "Confiance",
+  "horizon": "Horizon"
 }

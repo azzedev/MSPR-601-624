@@ -24,5 +24,17 @@
   "R0": "R0",
   "R0_description": "R0 (Basisreproduktionsrate)",
   "high_transmission_risk": "Hohes Ausbreitungsrisiko (R0 > 1)",
-  "controlled_transmission": "Kontrollierte Ausbreitung (R0 ≤ 1)"
+  "controlled_transmission": "Kontrollierte Ausbreitung (R0 ≤ 1)",
+  "confirmed_cases": "Bestätigte Fälle",
+  "geographic_propagation_by_country": "Geografische Verbreitung nach Ländern",
+  "number_of_cases": "Anzahl der Fälle",
+  "api_status": "API-Status",
+  "checking": "Überprüfung...",
+  "predictions_for": "Vorhersagen für",
+  "model_limitation": "Modellbeschränkung",
+  "mortality_rate": "Sterblichkeitsrate",
+  "spatial_spread": "Räumliche Ausbreitung",
+  "unreliable": "ungenau",
+  "confidence": "Vertrauen",
+  "horizon": "Zeithorizont"
 }
