@@ -109,7 +109,7 @@ function App() {
         {/* Passer les prédictions aux graphiques */}
         <TransmissionRateBarChart predictions={predictions} />
         <LineChartNumberOfDeathAndHealByDay predictions={predictions} />
-        <GeoPropagationBar predictions={predictions} />
+        <GeoPropagationBar /*predictions={predictions}*/ />
       </div>
     </div>
   );

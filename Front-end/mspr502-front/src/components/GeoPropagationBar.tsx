@@ -12,6 +12,7 @@ import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
+
 const propagationData = {
   labels: ['France', 'Espagne', 'Italie', 'Allemagne', 'Brésil', 'Inde'],
   datasets: [
