@@ -36,4 +36,4 @@ EXPOSE 5000
 COPY . .
 
 # Commande par défaut pour le développement
-CMD ["tail", "-f", "/dev/null"]
+CMD ["python", "api.py"]

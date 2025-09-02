@@ -36,5 +36,17 @@
   "spatial_spread": "Diffusione spaziale",
   "unreliable": "poco affidabile",
   "confidence": "Affidabilità",
-  "horizon": "Orizzonte"
+  "horizon": "Orizzonte",
+  "no_diseases_found": "Nessuna malattia trovata o dati non validi.",
+  "not_enough_history": "Dati storici insufficienti. Minimo richiesto: {{min}} settimane, disponibile: {{available}}",
+  "prediction_error": "Errore durante la previsione",
+  "error_label": "Errore",
+  "loading": "Caricamento...",
+  "imported_diseases": "Malattie importate:",
+  "sending_prediction": "Invio della previsione:",
+  "prediction_received": "Previsione ricevuta:",
+  "prediction_error_console": "Errore durante la previsione (console):",
+  "api_health": "Stato dell'API:",
+  "api_offline": "API non disponibile:",
+  "new_prediction_received": "Nuova previsione ricevuta in App:"
 }

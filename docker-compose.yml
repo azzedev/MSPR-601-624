@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./Front-end/mspr502-front
+    container_name: epidemic-frontend
+    volumes:
+      - ./Front-end/mspr502-front:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+      VITE_HOST: 0.0.0.0
+      VITE_PORT: 5173
+      VITE_API_URL: http://epidemic-api:5000
+    ports:
+      - "5173:5173"
+    networks:
+      - epidemic-network
+    command: npm run dev
+    restart: unless-stopped
+
+  epidemic-api:
+    build:
+      context: ./Backend
+    container_name: epidemic-backend
+    volumes:
+      - ./Backend:/app
+      - ml-models:/app/models       # volume partagé avec le conteneur ML
+    environment:
+      FLASK_APP: api.py
+      FLASK_ENV: development
+      PYTHONUNBUFFERED: "1"
+    ports:
+      - "5000:5000"
+    networks:
+      - epidemic-network
+    command: flask run --host=0.0.0.0 --port=5000
+    restart: unless-stopped
+
+  #ml-model:
+  #  build:
+  #    context: ./ML
+  #  container_name: epidemic-ml
+  #  volumes:
+  #    - ./ML/Model:/app/models
+  #  networks:
+  #    - epidemic-network
+  #  command: tail -f /dev/null
+  #  restart: unless-stopped
+
+networks:
+  epidemic-network:
+    driver: bridge
+
+volumes:
+  ml-models:

@@ -24,18 +24,18 @@ function App() {
     const checkAPI = async () => {
       try {
         const health = await apiService.checkHealth();
-        console.log("API Health:", health);
+        console.log(t("api_health"), health);
         setApiStatus("online");
       } catch (error) {
-        console.error("API is offline:", error);
+        console.error(t("api_offline"), error);
         setApiStatus("offline");
       }
     };
     checkAPI();
-  }, []);
+  }, [t]);
 
   const handlePredictionReceived = (prediction: PredictionResponse) => {
-    console.log("Nouvelle prédiction reçue dans App:", prediction);
+    console.log(t("new_prediction_received"), prediction);
     setPredictions(prediction);
   };
 

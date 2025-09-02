@@ -59,22 +59,26 @@ FEATURE_ORDER = [
 
 
 def load_models():
-    """Charge le modèle et les scalers"""
     global model, scaler_features, scaler_targets
     try:
         logger.info("Chargement du modèle")
-        model = tf.keras.models.load_model("best_model.keras")
-
+        model = tf.keras.models.load_model("models/best_model.keras")
         logger.info("Chargement des scalers")
-        scaler_features = joblib.load("scaler_features.pkl")
-        scaler_targets = joblib.load("scaler_targets.pkl")
-
+        scaler_features = joblib.load("models/scaler_features.pkl")
+        logger.info(f"scaler_features loaded: {scaler_features is not None}")
+        scaler_targets = joblib.load("models/scaler_targets.pkl")
+        logger.info(f"scaler_targets loaded: {scaler_targets is not None}")
         logger.info(" Modèles chargés avec succès")
         return True
     except Exception as e:
         logger.error(f" Erreur lors du chargement des modèles: {str(e)}")
         return False
 
+# Chargement des modèles au lancement du conteneur
+if load_models():
+    logger.info("✅ Modèles chargés avec succès")
+else:
+    logger.error("❌ Impossible de charger les modèles")
 
 def prepare_sequence(history_data):
     """Prépare une séquence de données pour le modèle"""
@@ -166,6 +170,8 @@ def health_check():
         {
             "status": "healthy",
             "model_loaded": model is not None,
+            "scaler_features_loaded": scaler_features is not None,
+            "scaler_targets_loaded": scaler_targets is not None,
             "timestamp": datetime.now().isoformat(),
         }
     )

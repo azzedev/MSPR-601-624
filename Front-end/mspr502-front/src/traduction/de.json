@@ -36,5 +36,17 @@
   "spatial_spread": "Räumliche Ausbreitung",
   "unreliable": "ungenau",
   "confidence": "Vertrauen",
-  "horizon": "Zeithorizont"
+  "horizon": "Zeithorizont",
+  "no_diseases_found": "Keine Krankheiten gefunden oder Daten ungültig.",
+  "not_enough_history": "Nicht genügend historische Daten. Mindestens erforderlich: {{min}} Wochen, verfügbar: {{available}}",
+  "prediction_error": "Fehler bei der Vorhersage",
+  "error_label": "Fehler",
+  "loading": "Lädt...",
+  "imported_diseases": "Importierte Krankheiten:",
+  "sending_prediction": "Vorhersage wird gesendet:",
+  "prediction_received": "Vorhersage empfangen:",
+  "prediction_error_console": "Fehler bei der Vorhersage (Konsole):",
+  "api_health": "API-Status:",
+  "api_offline": "API ist offline:",
+  "new_prediction_received": "Neue Vorhersage in App erhalten:"
 }

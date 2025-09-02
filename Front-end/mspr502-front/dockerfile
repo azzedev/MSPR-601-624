@@ -41,4 +41,7 @@ COPY vite.config.* ./
 COPY . .
 
 # Commande par défaut pour garder le container actif
-CMD ["tail", "-f", "/dev/null"]
+# CMD ["tail", "-f", "/dev/null"]
+
+# Commande pour lancer le serveur de développement Vite
+CMD ["npm", "run", "dev"]
