@@ -86,7 +86,7 @@ const ButtonList: React.FC<ButtonListProps> = ({ onPredictionReceived }) => {
         className="flex flex-wrap gap-2 mb-4 max-w-full"
         style={{ maxWidth: "700px" }}
       >
-        {Object.entries(diseaseMap).map(([disease, locations]) => (
+        {Object.entries(diseaseMap).map(([disease, /*locations*/]) => (
           <button
             key={disease}
             className={`px-4 py-2 text-white rounded hover:bg-blue-700 whitespace-nowrap ${
