@@ -1,3 +1,19 @@
 {
-  "welcome": "Willkommen"
+  "welcome": "Willkommen",
+  "monday": "Montag",
+  "tuesday": "Dienstag",
+  "wednesday": "Mittwoch",
+  "thursday": "Donnerstag",
+  "friday": "Freitag",
+  "week_1": "Woche 1",
+  "week_2": "Woche 2",
+  "week_3": "Woche 3",
+  "week_4": "Woche 4",
+  "week_5": "Woche 5",
+  "deaths": "Anzahl der Todesfälle",
+  "predicted_deaths": "Prognostizierte Todesfälle",
+  "projection_of_deaths": "Prognose der Todesfälle",
+  "number_of_deaths_per_day": "Todesfälle pro Tag",
+  "estimated_deaths_per_100k": "Geschätzte Todesfälle (pro 100k Fälle)",
+  "predicted_mortality_rate": "Vorhergesagte Sterblichkeitsrate"
 }

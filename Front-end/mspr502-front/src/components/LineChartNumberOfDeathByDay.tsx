@@ -11,6 +11,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import type { PredictionResponse } from "../services/apiService";
+import { useTranslation } from "react-i18next";
 
 ChartJS.register(
   LineElement,
@@ -30,12 +31,20 @@ interface Props {
 const LineChartNumberOfDeathAndHealByDay: React.FC<Props> = ({
   predictions,
 }) => {
+  const { t } = useTranslation();
+
   // Données par défaut
   const defaultData = {
-    labels: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"],
+    labels: [
+      t("monday"),
+      t("tuesday"),
+      t("wednesday"),
+      t("thursday"),
+      t("friday"),
+    ],
     datasets: [
       {
-        label: "nombre de décès",
+        label: t("deaths"),
         data: [2, 14, 18, 22, 19],
         borderColor: "rgba(230, 159, 0, 0.2)",
         backgroundColor: "rgba(0, 114, 178, 0.2)",
@@ -48,20 +57,20 @@ const LineChartNumberOfDeathAndHealByDay: React.FC<Props> = ({
     ],
   };
 
-  // Si prédictions, créer une simulation basée sur le taux de mortalité
+  // Données dynamiques si prédictions
   const dynamicData =
     predictions && predictions.status === "success"
       ? {
           labels: [
-            "Semaine 1",
-            "Semaine 2",
-            "Semaine 3",
-            "Semaine 4",
-            "Semaine 5",
+            t("week_1"),
+            t("week_2"),
+            t("week_3"),
+            t("week_4"),
+            t("week_5"),
           ],
           datasets: [
             {
-              label: `Décès prédits - ${predictions.disease}`,
+              label: `${t("predicted_deaths")} - ${predictions.disease}`,
               data: [
                 Math.round(1000 * predictions.predictions.mortality_rate.value),
                 Math.round(2500 * predictions.predictions.mortality_rate.value),
@@ -71,7 +80,7 @@ const LineChartNumberOfDeathAndHealByDay: React.FC<Props> = ({
               ],
               borderColor:
                 predictions.predictions.mortality_rate.value > 0.01
-                  ? "rgba(230, 159, 0, 0.8)" // orange si mortalité > 1%
+                  ? "rgba(230, 159, 0, 0.8)"
                   : "rgba(0, 114, 178, 0.8)",
               backgroundColor:
                 predictions.predictions.mortality_rate.value > 0.01
@@ -96,8 +105,8 @@ const LineChartNumberOfDeathAndHealByDay: React.FC<Props> = ({
       title: {
         display: true,
         text: predictions
-          ? `Projection des décès - ${predictions.disease} (${predictions.location})`
-          : "Nombre de décès par jour",
+          ? `${t("projection_of_deaths")} - ${predictions.disease} (${predictions.location})`
+          : t("number_of_deaths_per_day"),
       },
     },
     scales: {
@@ -106,7 +115,7 @@ const LineChartNumberOfDeathAndHealByDay: React.FC<Props> = ({
         max: 10000,
         title: {
           display: true,
-          text: "Nombre de décès estimés (pour 100k cas)",
+          text: t("estimated_deaths_per_100k"),
         },
         ticks: {
           stepSize: 1000,
@@ -120,7 +129,7 @@ const LineChartNumberOfDeathAndHealByDay: React.FC<Props> = ({
       <Line data={dynamicData} options={options} />
       {predictions && (
         <div className="mt-2 text-sm text-gray-600 text-center">
-          Taux de mortalité prédit :{" "}
+          {t("predicted_mortality_rate")}:{" "}
           {predictions.predictions.mortality_rate.value.toFixed(2)}%
         </div>
       )}
