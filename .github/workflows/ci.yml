@@ -6,42 +6,58 @@ on:
       - master
       - develop
       - Translation
+      - CI_Change
   pull_request:
     branches:
       - master
       - develop
       - Translation
+      - CI_Change
 
 jobs:
-  build-frontend:
+  build-and-test:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: Front-end/mspr502-front
 
     steps:
       - name: Checkout du code
         uses: actions/checkout@v3
 
-      - name: Installer Node.js
+      - name: Installer Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build et démarrage des conteneurs
+        run: |
+          docker-compose -f docker-compose.yml up -d --build
+
+      - name: Attendre que le backend démarre
+        run: |
+          echo "Attente du backend..."
+          sleep 15  # ajuster si nécessaire
+
+      - name: Vérifier le log du backend
+        run: |
+          echo "Vérification que le modèle est chargé..."
+          if docker logs epidemic-backend 2>&1 | grep -q "✅ Modèles chargés avec succès"; then
+            echo "Le modèle est chargé correctement"
+          else
+            echo "Erreur : le modèle n'a pas été chargé"
+            exit 1
+          fi
+
+      - name: Installer Node.js pour le frontend
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Cache npm
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('Front-end/mspr502-front/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Installer les dépendances frontend
+        run: |
+          cd Front-end/mspr502-front
+          npm install
 
-      - name: Installer les dépendances
-        run: npm install
+      - name: Lancer les tests frontend
+        run: |
+          cd Front-end/mspr502-front
+          npm test
 
-      - name: Build du projet
-        run: npm run build
-
-      - name: Lancer les tests
-        run: npm test
+      - name: Arrêter et nettoyer les conteneurs
+        run: docker-compose -f docker-compose.yml down
