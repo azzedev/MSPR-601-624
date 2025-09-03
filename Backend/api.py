@@ -62,7 +62,7 @@ def load_models():
     global model, scaler_features, scaler_targets
     try:
         logger.info("Chargement du modèle")
-        model = tf.keras.models.load_model("models/best_model.keras")
+        model = tf.keras.models.load_model("models/model.keras")
         logger.info("Chargement des scalers")
         scaler_features = joblib.load("models/scaler_features.pkl")
         logger.info(f"scaler_features loaded: {scaler_features is not None}")
