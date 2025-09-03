@@ -72,9 +72,9 @@ les deux commande doivent etre fait à la racine du projet.
 
 # Débug
 Si le projet rencontre des problèmes avec le serveur, vous pouvez généralement résoudre le souci de deux manières :
-    1. Vérifier que le backend est bien lancé.
 
-    2. Vérifier que les noms des fichiers dans le dossier models correspondent bien à ceux indiqués précédemment (model.keras, scaler_features.pkl, scaler_targets.pkl).
+    1. Vérifier que le backend est bien lancé.
+    2. Vérifier que les noms des fichiers dans le dossier models correspondent bien à ceux indiqués précédemment.
 
 ## Commandes utiles pour le débogage
 
